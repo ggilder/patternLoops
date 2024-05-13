@@ -2,9 +2,10 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    buffer.allocate(ofGetWindowWidth(), ofGetWindowHeight());
+    
     ofSetFrameRate(30);
-    ofSetBackgroundColor(235,230,211);
-    ofSetBackgroundAuto(false);
+    ofSetBackgroundColor(235, 230, 211);
     
     gui.setup();
     gui.add(trail.setup("trail", 4, 0, 100));
@@ -27,6 +28,13 @@ void ofApp::update(){
 void ofApp::draw(){
 //    ofSetColor(0, 0, 0, trail);
 //    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+    
+    buffer.begin();
+    if (!bufferInitialized) {
+        // On first frame, clear buffer
+        ofClear(255, 255, 255, 0);
+        bufferInitialized = true;
+    }
 
 	for (int i = 0; i < p.size(); i++) {
 		p[i].draw();
@@ -38,6 +46,9 @@ void ofApp::draw(){
 //    ofSetLineWidth(20);
 //    ofDrawLine(685.4, 275.5, 693.8, 302.5);
 //    ofDrawLine(693.8, 302.5, 703.3, 329.2);
+    
+    buffer.end();
+    buffer.draw(0, 0);
 }
 
 //--------------------------------------------------------------

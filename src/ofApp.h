@@ -29,4 +29,7 @@ class ofApp : public ofBaseApp{
 
 		ofxPanel gui;
         ofxFloatSlider trail;
+    
+        ofFbo buffer;
+        bool bufferInitialized;
 };
