@@ -3,32 +3,28 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     buffer.allocate(ofGetWindowWidth(), ofGetWindowHeight());
-    
-    ofSetFrameRate(30);
+
+    ofSetFrameRate(60);
     ofSetBackgroundColor(235, 230, 211);
-    
+
     gui.setup();
-    gui.add(trail.setup("trail", 4, 0, 100));
 
-	p.assign(20, noodle());
+    p.assign(20, noodle());
 
-	for (int i = 0; i < p.size(); i++) {
-		p[i].setup();
-	}
+    for (int i = 0; i < p.size(); i++) {
+        p[i].setup();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	for (int i = 0; i < p.size(); i++) {
-		p[i].update();
-	}
+    for (int i = 0; i < p.size(); i++) {
+        p[i].update();
+    }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-//    ofSetColor(0, 0, 0, trail);
-//    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-    
     buffer.begin();
     if (!bufferInitialized) {
         // On first frame, clear buffer
@@ -36,17 +32,16 @@ void ofApp::draw(){
         bufferInitialized = true;
     }
 
-	for (int i = 0; i < p.size(); i++) {
-		p[i].draw();
-	}
-    
-//    gui.draw();
+    ofSetColor(ofGetBackgroundColor(), trail);
+    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
 
-//    ofSetColor(250,225,200);
-//    ofSetLineWidth(20);
-//    ofDrawLine(685.4, 275.5, 693.8, 302.5);
-//    ofDrawLine(693.8, 302.5, 703.3, 329.2);
-    
+    for (int i = 0; i < p.size(); i++) {
+        p[i].draw();
+    }
+
+    // No gui controls for now
+    /* gui.draw(); */
+
     buffer.end();
     buffer.draw(0, 0);
 }

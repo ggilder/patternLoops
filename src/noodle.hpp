@@ -13,10 +13,10 @@ public:
 
     ofVec2f pos;
     ofVec2f vel;
+    ofVec2f prevVel;
     float frc;
     float uniqueVal;
-    float prevAngle;
-    
+
     ofColor bg;
     ofColor line;
 };
